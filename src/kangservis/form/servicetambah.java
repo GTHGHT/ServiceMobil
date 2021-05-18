@@ -5,17 +5,32 @@
  */
 package kangservis.form;
 
+import kangservis.util.Servis;
+
+import javax.swing.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+
 /**
  *
  * @author muham
  */
-public class servicetambah extends javax.swing.JFrame {
+public class servicetambah extends javax.swing.JDialog {
 
-    /**
-     * Creates new form servicetambah
-     */
-    public servicetambah() {
+    public static Servis input = new Servis("", "","");
+
+    public servicetambah(java.awt.Frame parent) {
+        super(parent, true);
         initComponents();
+
+        btntambah.addActionListener(e-> {
+            input = new Servis("", namatxt.getText(), hargatxt.getText());
+            dispose();
+        });
+    }
+
+    public static Servis getInput(){
+        return input;
     }
 
     /**
@@ -27,57 +42,41 @@ public class servicetambah extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        jLabel1 = new javax.swing.JLabel();
+        jLabel2 = new javax.swing.JLabel();
+        btntambah = new javax.swing.JButton();
+        namatxt = new javax.swing.JTextField();
+        hargatxt = new javax.swing.JTextField();
 
-        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
-        getContentPane().setLayout(layout);
-        layout.setHorizontalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 400, Short.MAX_VALUE)
-        );
-        layout.setVerticalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 300, Short.MAX_VALUE)
-        );
+        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
+        getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        jLabel1.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        jLabel1.setText("Nama Service : ");
+        getContentPane().add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 50, -1, -1));
+
+        jLabel2.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        jLabel2.setText("Harga Service : ");
+        getContentPane().add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 110, -1, -1));
+
+        btntambah.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        btntambah.setText("Tambah");
+        getContentPane().add(btntambah, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 160, -1, -1));
+
+        namatxt.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        getContentPane().add(namatxt, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 50, 130, -1));
+
+        hargatxt.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        getContentPane().add(hargatxt, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 110, 130, -1));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    /**
-     * @param args the command line arguments
-     */
-    public static void main(String args[]) {
-        /* Set the Nimbus look and feel */
-        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
-        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
-         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
-         */
-        try {
-            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-                if ("Nimbus".equals(info.getName())) {
-                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
-                    break;
-                }
-            }
-        } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(servicetambah.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(servicetambah.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(servicetambah.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(servicetambah.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        }
-        //</editor-fold>
-
-        /* Create and display the form */
-        java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                new servicetambah().setVisible(true);
-            }
-        });
-    }
-
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton btntambah;
+    private javax.swing.JTextField hargatxt;
+    private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel2;
+    private javax.swing.JTextField namatxt;
     // End of variables declaration//GEN-END:variables
 }
