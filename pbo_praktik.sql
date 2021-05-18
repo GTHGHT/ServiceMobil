@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: May 16, 2021 at 07:56 AM
+-- Generation Time: May 18, 2021 at 07:02 AM
 -- Server version: 10.4.10-MariaDB
 -- PHP Version: 7.3.12
 
@@ -43,8 +43,7 @@ CREATE TABLE `cust` (
 CREATE TABLE `dt_service` (
   `id_dt` int(11) NOT NULL,
   `id_utama` int(11) NOT NULL,
-  `id_service` int(11) NOT NULL,
-  `harga` int(11) NOT NULL
+  `id_service` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 -- --------------------------------------------------------
@@ -55,20 +54,8 @@ CREATE TABLE `dt_service` (
 
 CREATE TABLE `jenis` (
   `id_service` int(11) NOT NULL,
-  `nama` varchar(64) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
-
--- --------------------------------------------------------
-
---
--- Table structure for table `login`
---
-
-CREATE TABLE `login` (
-  `id_login` int(11) NOT NULL,
-  `username` varchar(32) NOT NULL,
-  `password` varchar(30) NOT NULL,
-  `id_pegawai` int(11) NOT NULL
+  `nama` varchar(64) NOT NULL,
+  `harga` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 -- --------------------------------------------------------
@@ -78,21 +65,9 @@ CREATE TABLE `login` (
 --
 
 CREATE TABLE `mobil_cust` (
-  `plat` int(11) NOT NULL,
-  `nama` int(11) NOT NULL,
+  `plat` varchar(16) NOT NULL,
+  `nama` varchar(32) NOT NULL,
   `id_cust` int(11) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
-
--- --------------------------------------------------------
-
---
--- Table structure for table `pegawai`
---
-
-CREATE TABLE `pegawai` (
-  `id_pegawai` int(11) NOT NULL,
-  `nama` varchar(50) NOT NULL,
-  `role` varchar(30) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 -- --------------------------------------------------------
@@ -102,9 +77,9 @@ CREATE TABLE `pegawai` (
 --
 
 CREATE TABLE `utama` (
-  `id` int(11) NOT NULL,
+  `id_utama` int(11) NOT NULL,
   `id_cust` int(11) NOT NULL,
-  `plat` int(11) NOT NULL,
+  `plat` varchar(16) NOT NULL,
   `waktu_masuk` datetime NOT NULL,
   `waktu_keluar` datetime NOT NULL,
   `total_harga` int(11) NOT NULL
@@ -135,14 +110,6 @@ ALTER TABLE `jenis`
   ADD PRIMARY KEY (`id_service`);
 
 --
--- Indexes for table `login`
---
-ALTER TABLE `login`
-  ADD PRIMARY KEY (`id_login`),
-  ADD UNIQUE KEY `username` (`username`),
-  ADD KEY `id_pegawai` (`id_pegawai`);
-
---
 -- Indexes for table `mobil_cust`
 --
 ALTER TABLE `mobil_cust`
@@ -150,16 +117,10 @@ ALTER TABLE `mobil_cust`
   ADD KEY `id_cust` (`id_cust`);
 
 --
--- Indexes for table `pegawai`
---
-ALTER TABLE `pegawai`
-  ADD PRIMARY KEY (`id_pegawai`);
-
---
 -- Indexes for table `utama`
 --
 ALTER TABLE `utama`
-  ADD PRIMARY KEY (`id`),
+  ADD PRIMARY KEY (`id_utama`),
   ADD KEY `id_cust` (`id_cust`),
   ADD KEY `plat` (`plat`);
 
@@ -180,22 +141,10 @@ ALTER TABLE `dt_service`
   MODIFY `id_dt` int(11) NOT NULL AUTO_INCREMENT;
 
 --
--- AUTO_INCREMENT for table `login`
---
-ALTER TABLE `login`
-  MODIFY `id_login` int(11) NOT NULL AUTO_INCREMENT;
-
---
--- AUTO_INCREMENT for table `pegawai`
---
-ALTER TABLE `pegawai`
-  MODIFY `id_pegawai` int(11) NOT NULL AUTO_INCREMENT;
-
---
 -- AUTO_INCREMENT for table `utama`
 --
 ALTER TABLE `utama`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id_utama` int(11) NOT NULL AUTO_INCREMENT;
 
 --
 -- Constraints for dumped tables
@@ -206,13 +155,7 @@ ALTER TABLE `utama`
 --
 ALTER TABLE `dt_service`
   ADD CONSTRAINT `dt_service_ibfk_1` FOREIGN KEY (`id_service`) REFERENCES `jenis` (`id_service`),
-  ADD CONSTRAINT `dt_service_ibfk_2` FOREIGN KEY (`id_utama`) REFERENCES `utama` (`id`);
-
---
--- Constraints for table `login`
---
-ALTER TABLE `login`
-  ADD CONSTRAINT `login_ibfk_1` FOREIGN KEY (`id_pegawai`) REFERENCES `pegawai` (`id_pegawai`);
+  ADD CONSTRAINT `dt_service_ibfk_2` FOREIGN KEY (`id_utama`) REFERENCES `utama` (`id_utama`);
 
 --
 -- Constraints for table `mobil_cust`
