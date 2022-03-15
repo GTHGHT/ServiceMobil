@@ -8,6 +8,7 @@ import java.io.InputStream;
 import java.sql.SQLException;
 import java.util.Properties;
 
+// I Should've made it a singleton
 public class MyDataSource {
     public static DataSource getDataSource(){
         Properties prop = new Properties();
